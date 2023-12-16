@@ -1,4 +1,4 @@
-import express, { Express } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 import morgan from "morgan";
@@ -8,7 +8,7 @@ import { connectToDB } from "@/utils/db";
 
 dotenv.config();
 
-const app: Express = express();
+const app = express();
 const port = process.env.PORT!;
 
 //middlewares
@@ -21,6 +21,6 @@ app.use(express.static(path.join(__dirname, "../../client/dist")));
 app.use("/api", router);
 
 app.listen(port, () => {
-  log.info(`[server]: Server is running at http://localhost:${port}`);
+  log.info(`Server is running at http://localhost:${port}`);
   connectToDB();
 });
