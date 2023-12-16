@@ -1,8 +1,8 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import pages from "@/pages";
+import { RouterProvider as ReactRouterProvider } from "react-router-dom";
 
-const RouterProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return <BrowserRouter>{children}</BrowserRouter>;
+const RouterProvider = () => {
+  return <ReactRouterProvider router={pages} />;
 };
 
 export default RouterProvider;

@@ -1,16 +1,15 @@
-import React from "react";
-import RouterProvider from "@/providers/router";
 import StoreProvider from "@/providers/store";
 import QueryProvider from "@/providers/query";
+import RouterProvider from "@/providers/router";
 
-const App: React.FC<React.PropsWithChildren> = ({ children }) => {
+const App = () => {
   return (
     <>
-      <RouterProvider>
-        <StoreProvider>
-          <QueryProvider>{children}</QueryProvider>
-        </StoreProvider>
-      </RouterProvider>
+      <StoreProvider>
+        <QueryProvider>
+          <RouterProvider />
+        </QueryProvider>
+      </StoreProvider>
     </>
   );
 };
