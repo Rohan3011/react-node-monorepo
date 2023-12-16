@@ -4,7 +4,7 @@ import path from "path";
 import morgan from "morgan";
 import router from "@/routes";
 import log from "@/utils/logger";
-import { connectToDB } from "./utils/db";
+import { connectToDB } from "@/utils/db";
 
 dotenv.config();
 
