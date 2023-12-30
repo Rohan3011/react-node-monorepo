@@ -1,3 +1,5 @@
+
+
 FROM node:19.6-bullseye-slim AS base
 
 # Install Yarn
@@ -43,3 +45,5 @@ COPY --chown=node:node . .
 EXPOSE 8080
 
 CMD [ "node", "index.js" ]
+
+LABEL org.opencontainers.image.source=https://github.com/rohan3011/react-node-monorepo
