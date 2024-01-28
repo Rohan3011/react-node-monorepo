@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verifyJwt } from "@/utils/jwt";
 
-interface tokenType {
+interface Token {
   accessToken: string;
   refreshToken: string;
 }
@@ -10,7 +10,7 @@ async function cookieJwtAuth(req: Request, res: Response, next: NextFunction) {
   if (req.cookies?.token === undefined) {
     return next();
   }
-  const token: tokenType = req.cookies.token;
+  const token: Token = req.cookies.token;
   try {
     const decoded = verifyJwt(token.accessToken, "accessTokenPublicKey");
     if (decoded) {

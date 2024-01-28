@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 import "dotenv/config";
+import path from "path";
+import fs from "fs";
 
 export function signJwt(
   obj: Object,
@@ -7,11 +9,14 @@ export function signJwt(
   options?: jwt.SignOptions | undefined
 ) {
   const signingKey = Buffer.from(getENV(keyName), "base64").toString("ascii");
-
-  return jwt.sign(obj, signingKey, {
-    ...(options && options),
-    algorithm: "RS256",
-  });
+  try {
+    return jwt.sign(obj, signingKey, {
+      ...(options && options),
+      algorithm: "RS256",
+    });
+  } catch (err) {
+    console.log("something went wrong ", err);
+  }
 }
 
 export function verifyJwt<T>(
@@ -35,16 +40,28 @@ function getENV(
     | "refreshTokenPublicKey"
     | "accessTokenPrivateKey"
     | "refreshTokenPrivateKey"
-): string {
+) {
   switch (keyName) {
     case "accessTokenPublicKey":
-      return process.env.ACCESS_TOKEN_PUBLIC_KEY || "";
+      return fs.readFileSync(
+        path.resolve(process.env.ACCESS_TOKEN_PUBLIC_KEY!),
+        "utf8"
+      );
     case "refreshTokenPublicKey":
-      return process.env.REFRESH_TOKEN_PUBLIC_KEY || "";
+      return fs.readFileSync(
+        path.resolve(process.env.REFRESH_TOKEN_PUBLIC_KEY!),
+        "utf8"
+      );
     case "accessTokenPrivateKey":
-      return process.env.ACCESS_TOKEN_PRIVATE_KEY || "";
+      return fs.readFileSync(
+        path.resolve(process.env.ACCESS_TOKEN_PRIVATE_KEY!),
+        "utf8"
+      );
     case "refreshTokenPrivateKey":
-      return process.env.REFRESH_TOKEN_PRIVATE_KEY || "";
+      return fs.readFileSync(
+        path.resolve(process.env.REFRESH_TOKEN_PRIVATE_KEY!),
+        "utf8"
+      );
     default:
       return "";
   }
