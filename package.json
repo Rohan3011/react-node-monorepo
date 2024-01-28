@@ -1,4 +1,18 @@
 {
   "name": "react-node-monorepo",
-  "packageManager": "yarn@4.0.2"
+  "version": "1.0.0",
+  "packageManager": "yarn@4.0.2",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "start": "concurrently \"yarn workspace client build\" \"yarn workspace server start\"",
+    "dev": "concurrently \"yarn workspace server dev\" \"yarn workspace client dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
