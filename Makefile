@@ -15,3 +15,16 @@ push-github-packages:
 	docker tag ${image} ghcr.io/rohan3011/${image} 
 	docker push ghcr.io/rohan3011/${image}
 
+.PHONY: client
+client:
+	yarn workspace client dev
+
+.PHONY: server
+server:
+	yarn workspace server dev
+
+# Help command (to show available commands)
+help:
+	@echo "Available commands:"
+	@echo "  make client     - Runs the client in dev"
+	@echo "  make server     - Runs the server in dev"
