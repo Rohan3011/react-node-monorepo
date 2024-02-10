@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { counterState, squaredState } from "@/atoms/example";
-import axios from "@/lib/axios";
 import { Button } from "@/components/ui/button";
 
 const HomePage: React.FC = () => {
