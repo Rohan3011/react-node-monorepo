@@ -4,6 +4,10 @@ import * as path from "path";
 import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
 const PWAOptions = {
+  strategies: "injectManifest",
+  srcDir: "src",
+  filename: "service-worker.ts",
+
   includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
   registerType: "autoUpdate",
   manifest: {
@@ -27,6 +31,7 @@ const PWAOptions = {
   devOptions: {
     enabled: true,
   },
+  injectRegister: "auto",
 } as VitePWAOptions;
 
 // https://vitejs.dev/config/

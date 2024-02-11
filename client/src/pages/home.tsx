@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { counterState, squaredState } from "@/atoms/example";
 import { Button } from "@/components/ui/button";
@@ -7,13 +7,12 @@ const HomePage: React.FC = () => {
   const [counter, setCounter] = useRecoilState(counterState);
   const squared = useRecoilValue(squaredState);
 
-  // useEffect(() => {
-  //   const checkHealth = async () => {
-  //     const { data } = await axios.get("/api/health");
-  //     console.log(data);
-  //   };
-  //   checkHealth();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const response = await Notification.requestPermission();
+      console.log(response);
+    })();
+  }, []);
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-center items-center">

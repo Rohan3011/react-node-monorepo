@@ -8,6 +8,7 @@
     "server",
     "client"
   ],
+  "type": "module",
   "scripts": {
     "start": "concurrently \"yarn workspace client build\" \"yarn workspace server start\"",
     "dev": "concurrently \"yarn workspace server dev\" \"yarn workspace client dev\""
