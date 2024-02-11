@@ -2,18 +2,14 @@ import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { counterState, squaredState } from "@/atoms/example";
 import { Button } from "@/components/ui/button";
+import { useLoaderData } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   const [counter, setCounter] = useRecoilState(counterState);
   const squared = useRecoilValue(squaredState);
 
-  // useEffect(() => {
-  //   const checkHealth = async () => {
-  //     const { data } = await axios.get("/api/health");
-  //     console.log(data);
-  //   };
-  //   checkHealth();
-  // }, []);
+  const data = useLoaderData();
+  console.log(data);
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-center items-center">
